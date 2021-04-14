@@ -40,7 +40,7 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
     //Read about socket.emit - https://socket.io/docs/v3/emitting-events/
     socket.emit('join', { name, room }, (error) => { //join is a string (event) recognized in the backend
       //we pass the data as name:name and room:room to the backend.this is es6 syntax.
-      if(error) {
+      if(error) {//This error callback function will be executed when callback function on backend is called.
         alert(error);
       }
     });
