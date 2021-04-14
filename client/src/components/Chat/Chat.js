@@ -11,7 +11,7 @@ import './Chat.css';
 
 const ENDPOINT = 'https://project-chat-application.herokuapp.com/';
 
-let socket;
+let socket; //variable stored outside our component
 
 const Chat = ({ location }) => { //location is a prop obtained from react router
   const [name, setName] = useState('');
@@ -29,17 +29,22 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
       room;room
     }
     */
-    socket = io(ENDPOINT);
+    
+    //when we get our first connectionwe will :
+    socket = io(ENDPOINT);//endpoint to The SERVER=localhost:5000 AS A STRING//S
 
     setRoom(room);
     setName(name)
 
-    socket.emit('join', { name, room }, (error) => {
+    //from frontend (client side socket) we emit different events using specific instance of socket
+    //Read about socket.emit - https://socket.io/docs/v3/emitting-events/
+    socket.emit('join', { name, room }, (error) => { //join is a string (event) recognized in the backend
+      //we pass the data as name:name and room:room to the backend.this is es6 syntax.
       if(error) {
         alert(error);
       }
     });
-  }, [ENDPOINT, location.search]);
+  }, [ENDPOINT, location.search]); //only when endpoint or location.search will change useeffect will run
   
   useEffect(() => {
     socket.on('message', message => {
