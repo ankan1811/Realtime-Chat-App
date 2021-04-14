@@ -13,7 +13,7 @@ const ENDPOINT = 'https://project-chat-application.herokuapp.com/';
 
 let socket;
 
-const Chat = ({ location }) => {
+const Chat = ({ location }) => { //location is a prop obtained from react router
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
@@ -21,8 +21,14 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search); //retieve the data that users have entered while joining
-
+     //retieve the data that users have entered while joining
+    const { name, room } = queryString.parse(location.search); //fetch the data from querystring we get a url from here(?name=ankan&room=room)
+    /*We will get an object 
+    {
+      name: Ankan
+      room;room
+    }
+    */
     socket = io(ENDPOINT);
 
     setRoom(room);
