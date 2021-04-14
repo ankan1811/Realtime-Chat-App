@@ -40,8 +40,10 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
     //Read about socket.emit - https://socket.io/docs/v3/emitting-events/
     socket.emit('join', { name, room }, (error) => { //join is a string (event) recognized in the backend
       //we pass the data as name:name and room:room to the backend.this is es6 syntax.
+      
+      //what we want to happen after that function socket.on is emitted in the backend
       if(error) {//This error callback function will be executed when callback function on backend is called.
-        alert(error);
+        alert(error); //we get an alert notification with the error
       }
     });
   }, [ENDPOINT, location.search]); //only when endpoint or location.search will change useeffect will run
