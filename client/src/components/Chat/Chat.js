@@ -21,7 +21,7 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+    const { name, room } = queryString.parse(location.search); //retieve the data that users have entered while joining
 
     socket = io(ENDPOINT);
 
