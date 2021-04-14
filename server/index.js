@@ -23,7 +23,7 @@ io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => { //we mentioned this in client/chat.js. we get these data from the frontend.
     const { error, user } = addUser({ id: socket.id, name, room });
 
-    if (error) return callback(error); //we have access to this callback as a toward parameter to emit fi=unction
+    if (error) return callback(error); //we have access to this callback as a toward parameter to emit function
 
     socket.join(user.room);
 
@@ -32,7 +32,7 @@ io.on('connect', (socket) => {
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
-    callback();//wec can trigger some response immediately after socket.on is being emmitted and we will do error handling
+    callback();//we can trigger some response immediately after socket.on is being emmitted and we will do error handling
   });
 
   socket.on('sendMessage', (message, callback) => {
