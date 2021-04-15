@@ -29,7 +29,8 @@ io.on('connect', (socket) => {
     if (error) return callback(error); //we have access to this callback as a toward parameter to emit function
 
     socket.join(user.room); //socket.join is inbuilt which joins an user in a room
-
+  
+    //Here we emit event message from the backend to the frontend. so socket.emit
     socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.` });//We can emit event message along with payload
     
     //broadcast will send a message to everyone besides that specific user (to let everyone in the room know that some user has joined
@@ -43,12 +44,14 @@ io.on('connect', (socket) => {
     callback();//So if there is no error then no error will be passed to the frontend ,then the if statement in the frontend in chat.js will not run
   });
 
+  //we expect event on the backend so use socket.on
   socket.on('sendMessage', (message, callback) => {
-    const user = getUser(socket.id);
+    const user = getUser(socket.id); //we get the user who send that message .
+    //This is a specific client socket.to instance so this is a specific user and we have his/her id
 
     io.to(user.room).emit('message', { user: user.name, text: message });
 
-    callback();
+    callback();//we always have callback so that we can do something after the message is sent on the frontend
   });
 
   ////We will use this method disconnect to register clients leaving from our chat app
