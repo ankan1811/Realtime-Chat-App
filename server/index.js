@@ -45,6 +45,7 @@ io.on('connect', (socket) => {
   });
 
   //we expect event on the backend so use socket.on
+  //Admin generated message has event ‘message’ and user generated message has event sendMessage.
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id); //we get the user who send that message .
     //This is a specific client socket.to instance so this is a specific user and we have his/her id
