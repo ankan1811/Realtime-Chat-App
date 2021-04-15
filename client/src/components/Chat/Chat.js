@@ -17,8 +17,8 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');//state for every single messahge initialized as an empty string
+  const [messages, setMessages] = useState([]);//An array which stores all messages
 
   useEffect(() => {
      //retieve the data that users have entered while joining
@@ -50,7 +50,7 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
   
   useEffect(() => {
     socket.on('message', message => {
-      setMessages(messages => [ ...messages, message ]);
+      setMessages(messages => [ ...messages, message ]);//Push the message in the messages array (Spread all other messages and add one message on it)
     });
     
     socket.on("roomData", ({ users }) => {
@@ -59,10 +59,10 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
 }, []);
 
   const sendMessage = (event) => {
-    event.preventDefault();
-
+    event.preventDefault(); //we do not want the full browser to refresh on key press so we prevent the deafult behaviour of a key press
+    
     if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socket.emit('sendMessage', message, () => setMessage(''));//after sending the message our input field will be cleared
     }
   }
 
