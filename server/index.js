@@ -50,6 +50,7 @@ io.on('connect', (socket) => {
     const user = getUser(socket.id); //we get the user who send that message .
     //This is a specific client socket.to instance so this is a specific user and we have his/her id
 
+    //we send the message to the user's room
     io.to(user.room).emit('message', { user: user.name, text: message });
 
     callback();//we always have callback so that we can do something after the message is sent on the frontend
