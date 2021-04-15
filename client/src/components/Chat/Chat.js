@@ -67,6 +67,7 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
   }
 
   return ( //To make our room name visible in the infobar dynamically use {room} in Infobar and then access it as props in Infobar.js
+    //similarly pass the messages ,name as props and similarly all others.
     <div className="outerContainer">
       <div className="container">
           <InfoBar room={room} /> 
