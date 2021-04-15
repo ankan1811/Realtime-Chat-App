@@ -12,7 +12,8 @@ const InfoBar = ({ room }) => (
       <h3>{room}</h3>
     </div>
     <div className="rightInnerContainer">
-      <a href="/"><img src={closeIcon} alt="close icon" /></a>
+      <a href="/"><img src={closeIcon} alt="close icon" /> //On clicking x (cross) button it will return to the login screen 
+  </a> 
     </div>
   </div>
 );
