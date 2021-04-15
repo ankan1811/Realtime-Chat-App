@@ -39,7 +39,7 @@ io.on('connect', (socket) => {
 
       //we can trigger some response immediately after socket.on is being emmitted and we will do error handling
     
-    //The callback at the frontend gets called everytime
+    //The callback at the frontend i.e. the arrow function gets called everytime
     callback();//So if there is no error then no error will be passed to the frontend ,then the if statement in the frontend in chat.js will not run
   });
 
