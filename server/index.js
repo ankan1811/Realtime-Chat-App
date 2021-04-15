@@ -44,7 +44,7 @@ io.on('connect', (socket) => {
     callback();//So if there is no error then no error will be passed to the frontend ,then the if statement in the frontend in chat.js will not run
   });
 
-  //we expect event on the backend so use socket.on
+  //we expect event on the backend so use socket.on which is the emit listener
   //Admin generated message has event ‘message’ and user generated message has event sendMessage.
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id); //we get the user who send that message .
