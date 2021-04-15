@@ -21,7 +21,9 @@ io.on('connect', (socket) => {
   //We will use this method connect to register clients joining into our chat app
   
   socket.on('join', ({ name, room }, callback) => { //we mentioned this in client/chat.js. we get these data from the frontend.
-    const { error, user } = addUser({ id: socket.id, name, room });
+    
+    const { error, user } = addUser({ id: socket.id, name, room });//socket.id is the id of a specific socket instance
+    //addUser function can only return an error or a user
 
     if (error) return callback(error); //we have access to this callback as a toward parameter to emit function
 
