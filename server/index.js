@@ -23,18 +23,24 @@ io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => { //we mentioned this in client/chat.js. we get these data from the frontend.
     
     const { error, user } = addUser({ id: socket.id, name, room });//socket.id is the id of a specific socket instance
-    //addUser function can only return an error or a user
+    //addUser function can only return an error or a user made in users.js
 
+    //So if there is an error it will just show the error dynamically that'username has taken' and we will be out of this function due to return
     if (error) return callback(error); //we have access to this callback as a toward parameter to emit function
 
-    socket.join(user.room);
+    socket.join(user.room); //socket.join is inbuilt which joins an user in a room
 
-    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.` });
+    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.` });//We can emit event message along with payload
+    
+    //broadcast will send a message to everyone besides that specific user (to let everyone in the room know that some user has joined
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
-    callback();//we can trigger some response immediately after socket.on is being emmitted and we will do error handling
+      //we can trigger some response immediately after socket.on is being emmitted and we will do error handling
+    
+    //The callback at the frontend gets called everytime
+    callback();//So if there is no error then no error will be passed to the frontend ,then the if statement in the frontend in chat.js will not run
   });
 
   socket.on('sendMessage', (message, callback) => {
