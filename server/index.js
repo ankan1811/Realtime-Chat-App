@@ -35,7 +35,8 @@ io.on('connect', (socket) => {
     
     //broadcast will send a message to everyone besides that specific user (to let everyone in the room know that some user has joined
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
-
+    
+  //We need to know the new state of the users in the room
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
       //we can trigger some response immediately after socket.on is being emmitted and we will do error handling
@@ -61,7 +62,9 @@ io.on('connect', (socket) => {
     const user = removeUser(socket.id);
 
     if (user) {
+      //inform all the members of the room that the user has left
       io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+      //We need to know the new state of the users in the room
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     }
   })
