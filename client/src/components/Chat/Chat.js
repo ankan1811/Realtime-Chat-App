@@ -72,7 +72,8 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
       <div className="container">
           <InfoBar room={room} /> 
           <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} // message to be displayed,setter function
+    />
       </div>
       <TextContainer users={users}/>
     </div>
