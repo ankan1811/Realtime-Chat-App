@@ -52,6 +52,7 @@ io.on('connect', (socket) => {
     //This is a specific client socket.to instance so this is a specific user and we have his/her id
 
     //we send the message to the user's room
+    //we use message event because we have to updtae the message in the messages array also in the chat rooom before displaying
     io.to(user.room).emit('message', { user: user.name, text: message });
 
     callback();//we always have callback so that we can do something after the message is sent on the frontend
