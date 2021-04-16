@@ -50,6 +50,7 @@ const Chat = ({ location }) => { //location is a prop obtained from react router
   
   useEffect(() => {
     socket.on('message', message => {
+      //The message can be sent by admin or anyone else. 
       setMessages(messages => [ ...messages, message ]);//Push the message in the messages array (Spread all other messages and add one message on it)
     });
     
