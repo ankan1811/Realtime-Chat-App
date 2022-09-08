@@ -1,7 +1,9 @@
 # Realtime Chat Application !!! 
 
 ## This is the new version.
-#### Realtime Chat Application made using reactjs, expressjs, nodejs, socket.io. You can enter in any room of your choice created by you and interact with the other person in that room in real time world.
+### Realtime Chat Application made using reactjs, expressjs, nodejs, socket.io. You can enter in any room of your choice created by you and interact with the other person in that room in real time world.
+
+ #### ⭐I have added detailed explanation of the entire codebase so that anyone familiar with React and nodejs can understand.
 
 This is a web application which allows users to :-
 
